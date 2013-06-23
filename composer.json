@@ -7,7 +7,8 @@
     "authors"     : [
         {
             "name"  : "Raphaël Khaïat",
-            "email" : "raphael@khaiat.org"
+            "email" : "raphael@khaiat.org",
+            "homepage" : "https://bacardi55.org"
         }
     ],
     "require": {
