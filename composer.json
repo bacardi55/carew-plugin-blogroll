@@ -16,7 +16,7 @@
         "easybook/geshi" : "dev-master@dev"
     },
     "autoload": {
-        "psr-0": { "Carew\\Plugin\\BlorRoll": ""}
+        "psr-0": { "Carew\\Plugin\\BlogRoll": ""}
     },
     "target-dir": "Carew/Plugin/BlogRoll",
     "extra": {
