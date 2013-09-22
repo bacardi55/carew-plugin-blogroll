@@ -18,33 +18,31 @@ class BlogRollEventSubscriber implements EventSubscriberInterface
         $this->blogsList = $blogsList;
     }
 
-    public function onDocument($event)
+    public function onDocuments($event)
     {
-        $document = $event->getSubject();
+        $this->buildBlogRoll();
 
-        if (Document::TYPE_POST == $document->getType()) {
-            $this->buildBlogRoll($document);
-        } elseif (Document::TYPE_PAGE == $document->getType()) {
-            $this->buildBlogRoll($document);
-        }
+        $twigGlobals = $this->twig->getGlobals();
+        $globals = $twigGlobals['carew'];
+        $globals->blogRoll = $this->blogsList;
     }
 
     public static function getSubscribedEvents()
     {
         return array(
-            Events::DOCUMENT => array(
-                array('onDocument', 256),
+            Events::DOCUMENTS => array(
+                array('onDocuments', 256),
             ),
         );
     }
 
-
-    protected function buildBlogRoll($document) {
+    protected function buildBlogRoll()
+    {
         $lists = array();
         foreach ($this->blogsList as $name => $url) {
             $lists[] = array('name' => $name, 'url' => $url);
         }
-        $this->twig->addGlobal('blogRoll', $lists);
+        $this->blogsList = $lists;
     }
 }
 
